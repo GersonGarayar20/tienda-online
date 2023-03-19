@@ -25,8 +25,8 @@ export default function Cart() {
     }
   };
   return (
-    <button onClick={handleClick}>
-      {logged ? "cerrar session" : "iniciar session"}
+    <button className="text-sm px-4 h-10" onClick={handleClick}>
+      {logged ? "Cerrar session" : "Iniciar session"}
     </button>
   );
 }

@@ -3,9 +3,9 @@ import { Outlet } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div>
-      <h1>bienvenidos a la home</h1>
+    <main className="max-w-7xl m-auto px-4 lg:px-8">
+      <h1 className="py-4">bienvenidos a la home</h1>
       <ListProduct />
-    </div>
+    </main>
   );
 }

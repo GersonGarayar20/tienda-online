@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Carrito from "./pages/Carrito";
 import DetailProduc from "./pages/DetailProduct";
+import IsLogged from "./components/IsLogged";
 
 import ErrorPage from "./pages/ErrorPage";
 
@@ -32,11 +33,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <IsLogged>
+        <Login />
+      </IsLogged>
+    ),
     loader: () => false,
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <IsLogged>
+        <Signup />
+      </IsLogged>
+    ),
   },
 ]);
