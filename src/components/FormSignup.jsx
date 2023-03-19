@@ -12,20 +12,24 @@ export default function FormSignup() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="flex flex-col" onSubmit={handleSubmit}>
+      <p className="font-bold mb-2">Correo electronico</p>
       <input
+        className="border p-3 focus:outline mb-4"
         type="text"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="email"
+        placeholder="Correo electronico"
       />
+      <p className="font-bold mb-2">Contraseña</p>
       <input
+        className="border p-3 focus:outline mb-4"
         type="text"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
+        placeholder="Contraseña"
       />
-      <button>Registrarse</button>
+      <button className="p-3 bg-black text-white">Registrarse</button>
     </form>
   );
 }
