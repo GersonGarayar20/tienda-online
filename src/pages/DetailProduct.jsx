@@ -43,7 +43,7 @@ export default function DetailProduct() {
         <section className="flex-1">
           <div className="pb-4">
             <h1 className="text-2xl font-bold mb-1">{producto?.nombre}</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            <p>S/ {producto?.precio}</p>
           </div>
 
           <div className="bg-neutral-100 border">
@@ -52,10 +52,9 @@ export default function DetailProduct() {
                 Descripcion:
               </p>
               <p className="text-sm text-slate-800">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure
-                ipsam minima quasi nihil illo exercitationem eos delectus magnam
-                saepe magni placeat, aliquam harum repudiandae, deleniti quas!
-                Ipsa eos libero commodi.
+                {producto?.descripcion
+                  ? producto?.descripcion
+                  : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam dolore unde hic. Consectetur non facilis earum, tempore, pariatur aliquam et cumque odio temporibus maxime mollitia vero quas fuga, eos blanditiis."}
               </p>
             </div>
             <div className="p-4">
