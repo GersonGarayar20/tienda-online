@@ -35,7 +35,6 @@ export const router = createBrowserRouter([
   {
     path: "/pago",
     element: <Pago />,
-    loader: () => false,
   },
   {
     path: "/login",
@@ -44,7 +43,6 @@ export const router = createBrowserRouter([
         <Login />
       </RedirectHome>
     ),
-    loader: () => false,
   },
   {
     path: "/signup",
