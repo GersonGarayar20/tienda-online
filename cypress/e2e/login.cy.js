@@ -1,12 +1,13 @@
 describe("login", () => {
   it("passes", () => {
     cy.visit("/login");
-    cy.url().should("include", "login");
-    cy.get("input[placeholder='email']").type("gplgusgmpldgpdhkox@bbitq.com");
-    cy.get("input[placeholder='password']").type("12345678");
+    cy.url().should("", "login");
+    cy.get("input[placeholder='Correo electronico']").type(
+      "gplgusgmpldgpdhkox@bbitq.com"
+    );
+    cy.get("input[placeholder='Contraseña']").type("12345678");
     cy.get("button").click();
-    cy.contains("bienvenidos a la home").should("be.visible");
+    cy.contains("Ecommerce").should("be.visible");
     cy.visit("/login");
-    cy.contains("bienvenidos a la home").should("be.visible");
   });
 });

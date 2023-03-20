@@ -6,10 +6,10 @@ import { useCart } from "../context/CartContext";
 export default function Pago() {
   const { cart, verTotal } = useCart();
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   useEffect(() => {
     isLogin().then((res) => {
-      if (!res) navigate("/login");
+      //if (!res) navigate("/login");
     });
   }, []);
 
