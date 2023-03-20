@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
-    <main className="">
+    <>
       <div className="py-8">
         <h1 className="text-center text-2xl font-bold">Login</h1>
       </div>
@@ -18,6 +18,6 @@ export default function Login() {
           </span>
         </Link>
       </p>
-    </main>
+    </>
   );
 }

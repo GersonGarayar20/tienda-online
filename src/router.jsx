@@ -7,7 +7,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Carrito from "./pages/Carrito";
 import DetailProduc from "./pages/DetailProduct";
-import IsLogged from "./components/IsLogged";
+import RedirectHome from "./components/RedirectHome";
+import Pago from "./pages/Pago";
 
 import ErrorPage from "./pages/ErrorPage";
 
@@ -32,20 +33,25 @@ export const router = createBrowserRouter([
     ],
   },
   {
+    path: "/pago",
+    element: <Pago />,
+    loader: () => false,
+  },
+  {
     path: "/login",
     element: (
-      <IsLogged>
+      <RedirectHome>
         <Login />
-      </IsLogged>
+      </RedirectHome>
     ),
     loader: () => false,
   },
   {
     path: "/signup",
     element: (
-      <IsLogged>
+      <RedirectHome>
         <Signup />
-      </IsLogged>
+      </RedirectHome>
     ),
   },
 ]);

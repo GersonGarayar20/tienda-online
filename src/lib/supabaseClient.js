@@ -14,3 +14,8 @@ export const obtenerUnProducto = async (id) => {
   return data[0];
 };
 export const nuevaOrden = () => {};
+
+export const isLogin = async () => {
+  const { data } = await supabase.auth.getSession();
+  return !!data.session;
+};

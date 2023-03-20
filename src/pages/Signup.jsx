@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Signup() {
   return (
-    <div>
+    <>
       <div className="py-8">
         <h1 className="text-center text-2xl font-bold">SignUp</h1>
       </div>
@@ -20,6 +20,6 @@ export default function Signup() {
           </span>
         </Link>
       </p>
-    </div>
+    </>
   );
 }

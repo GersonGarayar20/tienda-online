@@ -4,9 +4,11 @@ import Nav from "../components/Nav";
 
 export default function Layout() {
   return (
-    <div>
+    <>
       <Nav />
-      <Outlet />
-    </div>
+      <main className="max-w-7xl m-auto px-4 lg:px-8">
+        <Outlet />
+      </main>
+    </>
   );
 }

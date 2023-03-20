@@ -4,11 +4,14 @@ import { obtenerUnProducto } from "../lib/supabaseClient";
 
 //context
 import { useCart } from "../context/CartContext";
+import ModalCompra from "../components/ModalCompra";
+import Spin from "../components/Spin";
 
 export default function DetailProduct() {
   const [producto, setProducto] = useState();
   const [loading, setLoading] = useState(true);
   const [cantidad, setCantidad] = useState(1);
+  const [modal, setModal] = useState(false);
 
   const { id } = useParams();
 
@@ -24,21 +27,22 @@ export default function DetailProduct() {
 
   const handleClick = () => {
     addProduct(producto, cantidad);
+    setModal(true);
+    //agregar un modal
   };
 
-  if (loading) return <h2>cargardo</h2>;
+  if (loading) return <Spin />;
 
   return (
-    <main className="max-w-7xl m-auto px-4 lg:px-8">
-      <section className="lg:flex gap-8 py-8">
-        <article className="w-[700px]">
-          <div>
-            <img className="" src={producto?.imagen} alt="" />
-          </div>
-        </article>
-        <article className="">
+    <>
+      <div className="flex flex-col lg:flex-row gap-8 py-8">
+        <section className="lg:w-[400px]">
+          <img src={producto?.imagen} alt="" />
+        </section>
+
+        <section className="flex-1">
           <div className="pb-4">
-            <h2 className="text-2xl font-bold mb-1">{producto?.nombre}</h2>
+            <h1 className="text-2xl font-bold mb-1">{producto?.nombre}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
           </div>
 
@@ -72,8 +76,15 @@ export default function DetailProduct() {
           >
             Añadir a la cesta
           </button>
-        </article>
-      </section>
-    </main>
+        </section>
+      </div>
+      {modal ? (
+        <ModalCompra
+          producto={producto}
+          cantidad={cantidad}
+          setModal={setModal}
+        />
+      ) : null}
+    </>
   );
 }

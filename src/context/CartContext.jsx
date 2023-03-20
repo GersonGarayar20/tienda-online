@@ -47,6 +47,16 @@ export const CartContextProvider = ({ children }) => {
     setCart(newCart);
   };
 
+  const setCantidad = (id, cantidad) => {
+    const newCart = cart.map((el) => {
+      if (el.id === id) {
+        el.cantidad = Number(cantidad);
+      }
+      return el;
+    });
+    setCart(newCart);
+  };
+
   const removeProduct = (id) => {
     const newProductos = cart.filter((el) => el.id !== id);
     setCart(newProductos);
@@ -67,7 +77,14 @@ export const CartContextProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, addCantidad, removeProduct, verTotal }}
+      value={{
+        cart,
+        addProduct,
+        addCantidad,
+        removeProduct,
+        setCantidad,
+        verTotal,
+      }}
     >
       {children}
     </CartContext.Provider>
