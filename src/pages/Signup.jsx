@@ -12,7 +12,7 @@ export default function Signup() {
       />
       <div className="flex justify-end">
         <section className="bg-white lg:w-[700px] w-full h-screen pt-16">
-          <div className="max-w-md m-auto">
+          <div className="max-w-md m-auto px-8">
             <div className="py-8">
               <h1 className=" text-2xl font-bold">SignUp</h1>
             </div>

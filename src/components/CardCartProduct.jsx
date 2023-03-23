@@ -31,7 +31,7 @@ export default function CardCartProduct({
           <img style={{ width: "100px" }} src={imagen} alt="" />
         </div>
         <div className="flex-1">
-          <h4 className="font-bold">{nombre}</h4>
+          <h4 className="font-bold lg:text-base text-sm">{nombre}</h4>
         </div>
 
         <div className=" flex flex-col justify-end">
