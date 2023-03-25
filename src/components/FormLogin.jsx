@@ -1,68 +1,68 @@
-import { useState } from "react";
-import { supabase } from "../lib/supabaseClient";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import { supabase } from '../lib/supabaseClient'
+import { useNavigate } from 'react-router-dom'
 
-//falta el manejo de errores
+// falta el manejo de errores
 
-export default function FormLogin() {
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
+export default function FormLogin () {
+  const [email, setEmail] = useState('')
+  const [emailError, setEmailError] = useState(false)
+  const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setEmailError(email.length === 0);
-    setPasswordError(password.length === 0);
+    setEmailError(email.length === 0)
+    setPasswordError(password.length === 0)
 
-    if ((emailError, passwordError)) return;
+    if ((emailError, passwordError)) return
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data } = await supabase.auth.signInWithPassword({
       email,
-      password,
-    });
+      password
+    })
 
-    if (!!data.session) return navigate("/");
-  };
+    if (data.session) return navigate('/')
+  }
 
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
       <div>
-        <p className="font-bold mb-2">Correo electronico</p>
+        <p className='font-bold mb-2'>Correo electronico</p>
         <input
           className={`border w-full p-3 focus:outline ${
-            emailError && "border-red-500 outline-none text-red-500"
+            emailError && 'border-red-500 outline-none text-red-500'
           }`}
-          type="text"
+          type='text'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Correo electronico"
+          placeholder='Correo electronico'
         />
         {emailError && (
-          <p className="text-red-500 py-2">Email no puede estar en blanco</p>
+          <p className='text-red-500 py-2'>Email no puede estar en blanco</p>
         )}
       </div>
 
       <div>
-        <p className="font-bold mb-2">Contraseña</p>
+        <p className='font-bold mb-2'>Contraseña</p>
         <input
           className={`border w-full p-3 focus:outline ${
-            passwordError && "border-red-500 outline-none text-red-500"
+            passwordError && 'border-red-500 outline-none text-red-500'
           }`}
-          type="password"
+          type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
+          placeholder='Contraseña'
         />
         {passwordError && (
-          <p className="text-red-500 py-2">Password no puede estar en blanco</p>
+          <p className='text-red-500 py-2'>Password no puede estar en blanco</p>
         )}
       </div>
 
-      <button className="p-3 bg-black text-white">Iniciar Session</button>
+      <button className='p-3 bg-black text-white'>Iniciar Session</button>
     </form>
-  );
+  )
 }

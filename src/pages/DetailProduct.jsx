@@ -1,67 +1,67 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { obtenerUnProducto } from "../lib/supabaseClient";
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { obtenerUnProducto } from '../lib/supabaseClient'
 
-//context
-import { useCart } from "../context/CartContext";
-import ModalCompra from "../components/ModalCompra";
-import Spin from "../components/Spin";
+// context
+import { useCart } from '../context/CartContext'
+import ModalCompra from '../components/ModalCompra'
+import Spin from '../components/Spin'
 
-export default function DetailProduct() {
-  const [producto, setProducto] = useState();
-  const [loading, setLoading] = useState(true);
-  const [cantidad, setCantidad] = useState(1);
-  const [modal, setModal] = useState(false);
+export default function DetailProduct () {
+  const [producto, setProducto] = useState()
+  const [loading, setLoading] = useState(true)
+  const [cantidad, setCantidad] = useState(1)
+  const [modal, setModal] = useState(false)
 
-  const { id } = useParams();
+  const { id } = useParams()
 
-  //context
-  const { addProduct } = useCart();
+  // context
+  const { addProduct } = useCart()
 
   useEffect(() => {
     obtenerUnProducto(id).then((data) => {
-      setProducto(data);
-      setLoading(false);
-    });
-  }, []);
+      setProducto(data)
+      setLoading(false)
+    })
+  }, [])
 
   const handleClick = () => {
-    addProduct(producto, cantidad);
-    setModal(true);
-    //agregar un modal
-  };
+    addProduct(producto, cantidad)
+    setModal(true)
+    // agregar un modal
+  }
 
-  if (loading) return <Spin />;
+  if (loading) return <Spin />
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-8 py-8">
-        <section className="lg:w-[400px]">
-          <img src={producto?.imagen} alt="" />
+      <div className='flex flex-col lg:flex-row gap-8 py-8'>
+        <section className='lg:w-[400px]'>
+          <img src={producto?.imagen} alt='' />
         </section>
 
-        <section className="flex-1">
-          <div className="pb-4">
-            <h1 className="text-2xl font-bold mb-1">{producto?.nombre}</h1>
+        <section className='flex-1'>
+          <div className='pb-4'>
+            <h1 className='text-2xl font-bold mb-1'>{producto?.nombre}</h1>
             <p>S/ {producto?.precio}</p>
           </div>
 
-          <div className="bg-neutral-100 border">
-            <div className="p-4">
-              <p className="text-sm font-bold text-slate-800 mb-1">
+          <div className='bg-neutral-100 border'>
+            <div className='p-4'>
+              <p className='text-sm font-bold text-slate-800 mb-1'>
                 Descripcion:
               </p>
-              <p className="text-sm text-slate-800">
+              <p className='text-sm text-slate-800'>
                 {producto?.descripcion
                   ? producto?.descripcion
-                  : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam dolore unde hic. Consectetur non facilis earum, tempore, pariatur aliquam et cumque odio temporibus maxime mollitia vero quas fuga, eos blanditiis."}
+                  : 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam dolore unde hic. Consectetur non facilis earum, tempore, pariatur aliquam et cumque odio temporibus maxime mollitia vero quas fuga, eos blanditiis.'}
               </p>
             </div>
-            <div className="p-4">
-              <p className="text-sm text-slate-800 font-bold mb-2">Cantidad:</p>
+            <div className='p-4'>
+              <p className='text-sm text-slate-800 font-bold mb-2'>Cantidad:</p>
               <input
-                className="border p-3 w-20 focus:outline outline-sky-400 rounded"
-                type="number"
+                className='border p-3 w-20 focus:outline outline-sky-400 rounded'
+                type='number'
                 min={1}
                 value={cantidad}
                 onChange={(e) => setCantidad(e.target.value)}
@@ -70,20 +70,22 @@ export default function DetailProduct() {
           </div>
 
           <button
-            className="w-full text-white text-lg font-bold py-4 bg-green-600 hover:bg-green-800 transition-all"
+            className='w-full text-white text-lg font-bold py-4 bg-green-600 hover:bg-green-800 transition-all'
             onClick={handleClick}
           >
             Añadir a la cesta
           </button>
         </section>
       </div>
-      {modal ? (
-        <ModalCompra
-          producto={producto}
-          cantidad={cantidad}
-          setModal={setModal}
-        />
-      ) : null}
+      {modal
+        ? (
+          <ModalCompra
+            producto={producto}
+            cantidad={cantidad}
+            setModal={setModal}
+          />
+          )
+        : null}
     </>
-  );
+  )
 }

@@ -1,32 +1,32 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabaseClient";
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabaseClient'
 
-export default function Cart() {
-  const [logged, setLogged] = useState(false);
+export default function Cart () {
+  const [logged, setLogged] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    getSession();
-  }, []);
+    getSession()
+  }, [])
 
   const getSession = async () => {
-    const { data } = await supabase.auth.getSession();
-    setLogged(!!data.session);
-  };
+    const { data } = await supabase.auth.getSession()
+    setLogged(!!data.session)
+  }
 
   const handleClick = async () => {
     if (logged) {
-      const { error } = await supabase.auth.signOut();
-      setLogged(false);
+      await supabase.auth.signOut()
+      setLogged(false)
     } else {
-      navigate("/login");
+      navigate('/login')
     }
-  };
+  }
   return (
-    <button className="text-sm px-4 h-10" onClick={handleClick}>
-      {logged ? "Cerrar session" : "Iniciar session"}
+    <button className='text-sm px-4 h-10' onClick={handleClick}>
+      {logged ? 'Cerrar session' : 'Iniciar session'}
     </button>
-  );
+  )
 }
